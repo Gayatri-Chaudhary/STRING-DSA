@@ -1,0 +1,41 @@
+BRUTE FORCE
+# baar baar string ko rotate krte jao or check karte jao
+class Solution {
+    public String rotate(String s){
+        char ch1 = s.charAt(0);
+        StringBuilder sb = new StringBuilder();
+        for(int i=1;i<s.length();i++){
+            sb.append(s.charAt(i));
+        }
+        sb.append(ch1);
+
+        return sb.toString();
+    }
+    public boolean rotateString(String s, String goal) {
+        int n = goal.length();
+        String temp=s;
+        for(int i=0;i<n;i++){
+            temp = rotate(temp);
+            if(temp.equals(goal)){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+TC = O(n^2)
+SC = O(n)
+
+//Approach-2 (Concatenation with itself contains all possible rotations)
+//T.C : O(n)+O(n) = O(n)
+//S.C : O(1)
+class Solution {
+    public boolean rotateString(String s, String goal) {
+        int m = s.length();
+        int n = goal.length();
+        if(m==n && (s+s).contains(goal)){
+            return true;
+        }
+        return false;
+    }
+}
